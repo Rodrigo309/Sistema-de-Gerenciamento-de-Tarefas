@@ -1,5 +1,8 @@
 package modelos;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 public class Tarefa {
     private String titulo;
     private String descricao;
@@ -8,6 +11,20 @@ public class Tarefa {
     private String prioridade;
 
 
+    public Tarefa(String titulo, String descricao, String prioridade){
+        this.titulo = titulo;
+        this.descricao = descricao;
+        this.prioridade = prioridade;
+        this.concluida = false;
+
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+        this.dataCriacao = dateTimeFormatter.format(LocalDateTime.now());
+
+    }
+
+    public void marcarComoConcluida(){
+        this.concluida = true;
+    }
 
     public String getTitulo() {
         return titulo;
@@ -15,14 +32,6 @@ public class Tarefa {
 
     public void setTitulo(String titulo) {
         this.titulo = titulo;
-    }
-
-    public String getPrioridade() {
-        return prioridade;
-    }
-
-    public void setPrioridade(String prioridade) {
-        this.prioridade = prioridade;
     }
 
     public String getDescricao() {
@@ -41,28 +50,18 @@ public class Tarefa {
         this.concluida = concluida;
     }
 
-    public String getDataCriacao() {
-        return dataCriacao;
+    public String getPrioridade() {
+        return prioridade;
     }
 
-    public Tarefa(String titulo, String descricao, String prioridade){
-        this.titulo = titulo;
-        this.descricao = descricao;
+    public void setPrioridade(String prioridade) {
         this.prioridade = prioridade;
-
-        this.concluida = false;
-    }
-
-
-
-    public void marcarComoConcluida(){
-        this.concluida = true;
     }
 
     @Override
     public String toString() {
         return "Tarefa{" +
-                "titulo ='" + titulo + '\'' +
+                "titulo='" + titulo + '\'' +
                 ", descricao='" + descricao + '\'' +
                 ", dataCriacao='" + dataCriacao + '\'' +
                 ", concluida=" + concluida +
